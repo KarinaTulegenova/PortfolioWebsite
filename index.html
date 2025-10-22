@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>KarinaTul</title>
+	<meta name="description" content="Portfolio of Karina Tulegenova: projects, skills, and contact information." />
+	<meta property="og:title" content="KarinaTul" />
+	<meta property="og:description" content="Projects, skills, and contact information." />
+	<meta property="og:type" content="website" />
+	<meta name="theme-color" content="#9b5cff" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		:root {
+			--bg: #0a0b0f;
+			--grid: rgba(255, 255, 255, .04);
+			--card: rgba(255, 255, 255, .06);
+			--text: #eef2ff;
+			--muted: #b8c1ff;
+			--primary: #9b5cff;
+			--primary-2: #6e42ff;
+			--accent: #ff8a3d;
+			--accent-2: #ffb35c;
+			--shadow: 0 10px 30px rgba(0, 0, 0, .35);
+		}
+
+		* {
+			box-sizing: border-box
+		}
+
+		html {
+			scroll-behavior: smooth
+		}
+
+		html,
+		body {
+			height: 100%
+		}
+
+		body {
+			margin: 0;
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+			color: var(--text);
+			line-height: 1.6;
+			letter-spacing: .1px;
+			background:
+				radial-gradient(900px 600px at 85% 10%, rgba(155, 92, 255, .15), transparent 55%),
+				radial-gradient(900px 600px at 10% 30%, rgba(255, 138, 61, .10), transparent 60%),
+				linear-gradient(180deg, #08090e 0%, #0a0b0f 100%);
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			z-index: 0;
+			background-image:
+				linear-gradient(var(--grid) 1px, transparent 1px),
+				linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+			background-size: 40px 40px, 40px 40px;
+			mask-image: radial-gradient(1000px 600px at 50% 0%, #000 60%, transparent 100%);
+		}
+
+		a {
+			color: var(--primary);
+			text-decoration: none
+		}
+
+		a:hover {
+			text-decoration: underline
+		}
+
+		.wrap {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 28px
+		}
+
+		header {
+			position: sticky;
+			top: 0;
+			z-index: 50;
+			backdrop-filter: blur(10px);
+			background: linear-gradient(to bottom, rgba(10, 11, 15, .75), rgba(10, 11, 15, .35));
+			border-bottom: 1px solid rgba(255, 255, 255, .06);
+		}
+
+		.nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 18px;
+			padding: 14px 28px;
+		}
+
+		.logo {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-weight: 800
+		}
+
+		.logo .mark {
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			color: var(--primary);
+		}
+
+		.logo .slug {
+			opacity: .9
+		}
+
+		nav a {
+			margin: 0 10px;
+			padding: 8px 10px;
+			border-radius: 10px
+		}
+
+		nav a.active {
+			background: rgba(155, 92, 255, .10);
+			border: 1px solid rgba(155, 92, 255, .25)
+		}
+
+		.cta {
+			display: flex;
+			gap: 10px;
+			align-items: center
+		}
+
+		.btn {
+			display: inline-grid;
+			place-items: center;
+			padding: 10px 14px;
+			border-radius: 12px;
+			border: 1px solid rgba(255, 255, 255, .08);
+			background: var(--card);
+			box-shadow: var(--shadow);
+			transition: .2s;
+			font-weight: 600;
+		}
+
+		.btn:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 12px 28px rgba(0, 0, 0, .45)
+		}
+
+		.btn.primary {
+			background: linear-gradient(135deg, var(--primary), var(--primary-2));
+			color: #0b1020;
+			border: none
+		}
+
+		.hero {
+			display: grid;
+			grid-template-columns: 1.2fr .8fr;
+			gap: 40px;
+			align-items: center;
+			padding: 70px 28px 30px
+		}
+
+		.hero-title {
+			font-size: 48px;
+			line-height: 1.1;
+			margin: 0 0 12px
+		}
+
+		.hero-sub {
+			color: var(--muted);
+			font-size: 18px;
+			margin: 0 0 22px
+		}
+
+		.hero .tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px
+		}
+
+		.tag {
+			padding: 8px 12px;
+			border-radius: 999px;
+			background: var(--card);
+			border: 1px solid rgba(255, 255, 255, .08);
+			font-size: 13px
+		}
+
+		.card {
+			background: var(--card);
+			border: 1px solid rgba(255, 255, 255, .08);
+			border-radius: 18px;
+			padding: 20px;
+			box-shadow: var(--shadow)
+		}
+
+		.avatar {
+			aspect-ratio: 1/1;
+			border-radius: 18px;
+			background: radial-gradient(120px 120px at 30% 20%, rgba(255, 255, 255, .18), transparent 35%), linear-gradient(135deg, #1f2330, #0e1320);
+			border: 1px solid rgba(255, 255, 255, .08);
+			overflow: hidden;
+			position: relative
+		}
+
+		.avatar img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			border-radius: inherit;
+			filter: saturate(1.1);
+		}
+
+		.avatar::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(500px 220px at 80% 10%, rgba(155, 92, 255, .18), transparent 60%),
+				radial-gradient(300px 200px at 20% 90%, rgba(255, 138, 61, .12), transparent 60%);
+			pointer-events: none;
+		}
+
+		section {
+			padding: 60px 28px;
+			position: relative
+		}
+
+		h2 {
+			font-size: 32px;
+			margin: 0 0 16px
+		}
+
+		.title-bar {
+			width: 90px;
+			height: 4px;
+			border-radius: 99px;
+			background: linear-gradient(90deg, var(--primary), var(--accent));
+			margin: 8px 0 18px
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(12, 1fr);
+			gap: 18px
+		}
+
+		.span-6 {
+			grid-column: span 6
+		}
+
+		.span-4 {
+			grid-column: span 4
+		}
+
+		.span-12 {
+			grid-column: span 12
+		}
+
+		.project {
+			display: flex;
+			flex-direction: column;
+			gap: 12px
+		}
+
+		.project .thumb {
+			height: 180px;
+			border-radius: 14px;
+			background:
+				linear-gradient(135deg, rgba(155, 92, 255, .30), rgba(255, 138, 61, .30)),
+				linear-gradient(135deg, #1c2234, #0e1320);
+			border: 1px solid rgba(255, 255, 255, .10);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 700;
+			letter-spacing: .4px;
+			color: #e9e6ff;
+		}
+
+		.project h3 {
+			margin: 2px 0 0;
+			font-size: 20px
+		}
+
+		.muted {
+			color: var(--muted);
+			font-size: 14px
+		}
+
+		.k-row {
+			display: flex;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+
+		.footer {
+			padding: 40px 28px 70px;
+			color: var(--muted);
+			font-size: 14px;
+			text-align: center
+		}
+
+		.contact {
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap
+		}
+
+		.contact .btn {
+			padding: 12px 14px
+		}
+
+		.contact svg {
+			width: 18px;
+			height: 18px
+		}
+
+		.contact-form {
+			display: grid;
+			gap: 12px;
+			width: 100%;
+			margin-top: 16px
+		}
+
+		.field input,
+		.field textarea {
+			width: 100%;
+			padding: 14px 16px;
+			border-radius: 12px;
+			border: 1px solid rgba(255, 255, 255, .08);
+			background: rgba(255, 255, 255, .05);
+			color: var(--text);
+			outline: none
+		}
+
+		.field textarea {
+			resize: vertical;
+			min-height: 120px
+		}
+
+		.field input:focus,
+		.field textarea:focus {
+			box-shadow: 0 0 0 3px rgba(155, 92, 255, .25);
+			border-color: rgba(155, 92, 255, .45)
+		}
+
+		.small {
+			font-size: 12px
+		}
+
+		.thumb {
+			position: relative;
+			height: 180px;
+			border-radius: 14px;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, .10);
+			background: linear-gradient(135deg, #1c2234, #0e1320);
+		}
+
+		.thumb img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: cover;
+			transition: transform .35s ease, opacity .35s ease;
+		}
+
+		.thumb:hover img {
+			transform: scale(1.04);
+			opacity: .95;
+		}
+
+		.project img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		.carousel {
+			border-radius: 16px;
+			overflow: hidden
+		}
+
+		.carousel .carousel-caption {
+			background: rgba(10, 11, 15, .55);
+			border-radius: 10px;
+			padding: .5rem .75rem
+		}
+
+		.carousel-indicators [data-bs-target] {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%
+		}
+
+		@media (max-width: 980px) {
+			.hero {
+				grid-template-columns: 1fr;
+				gap: 24px
+			}
+
+			.hero-title {
+				font-size: 38px
+			}
+
+			.span-6,
+			.span-4 {
+				grid-column: span 12
+			}
+		}
+
+		.card,
+		.card * {
+			color: #fff !important;
+		}
+
+		.hero-sub,
+		.muted {
+			color: #f1f1f1 !important;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			color: #ffffff !important;
+		}
+
+		p,
+		li,
+		a,
+		span,
+		strong,
+		em {
+			color: #ffffff !important;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div class="wrap nav">
+			<div class="logo"><span class="mark">
+					<karina.dev />
+				</span><span class="slug">Karina Tulegenova</span></div>
+			<nav>
+				<a href="#home" class="active">Home</a>
+				<a href="#about">About</a>
+				<a href="#projects">Projects</a>
+				<a href="#certificates">Certificates</a>
+				<a href="#contact">Contact</a>
+			</nav>
+			<div class="cta">
+				<a class="btn" href="mailto:241438@astanait.edu.kz">Email</a>
+				<a class="btn primary" href="https://t.me/karinatul" target="_blank" rel="noopener">Telegram</a>
+			</div>
+		</div>
+	</header>
+
+	<main class="wrap" id="home">
+		<section class="hero">
+			<div>
+				<h1 class="hero-title">Hi!</h1>
+				<div class="title-bar"></div>
+				<p class="hero-sub">I’m Karina — a junior software developer ✦</p>
+				<div class="tags">
+					<span class="tag">HTML/CSS/JS</span>
+					<span class="tag">PostgreSQL</span>
+					<span class="tag">Java • Algorithms</span>
+					<span class="tag">UI/UX</span>
+				</div>
+				<div class="k-row" style="margin-top:18px">
+					<a class="btn primary" href="#projects">View Projects</a>
+					<a class="btn" href="#contact">Contact Me</a>
+				</div>
+			</div>
+			<div class="card avatar">
+				<img src="https://c.tenor.com/XwSM8MC-5LwAAAAM/smug-dance-nooshy.gif"
+					alt="Karina — animated hero visual" />
+			</div>
+		</section>
+
+		<section id="about">
+			<h2>About</h2>
+			<div class="title-bar"></div>
+			<div class="card">
+				<p>I'm a <strong>Software Engineering</strong> student at <strong>Astana IT University</strong>
+					passionate about building user-friendly and purposeful software. I enjoy combining
+					<strong>technology</strong>, <strong>design</strong>, and <strong>psychology</strong> to create
+					projects that make an impact.
+				</p>
+				<ul>
+					<li>🎓 Studying <strong>Software Engineering (2024–2027)</strong></li>
+					<li>👩‍🏫 Former <strong>Informatics Teacher</strong> at Umskul (<em>Jul 2024 – Feb 2025</em>)</li>
+					<li>🛠 Skilled in <strong>Java, SQL, Web Development, and Algorithms</strong></li>
+					<li>🧠 Exploring <strong>AI-powered solutions</strong> and <strong>Full Stack Development</strong>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section id="projects">
+			<h2>Projects</h2>
+			<div class="title-bar"></div>
+			<div class="grid">
+				<!-- PIZZA APP -->
+				<article class="span-6 project card">
+					<div class="thumb">
+						<img src="pr/photo_2025-10-23_00-21-22.jpg" alt="Next Pizza UI preview">
+					</div>
+					<h3>Next Pizza — Ordering UI</h3>
+					<p class="muted">A responsive pizza ordering interface with category filters, price range slider,
+						and product cards.
+						Emphasis on clarity and UX.</p>
+					<div class="k-row"><span class="tag">React/Next (UI)</span><span class="tag">TypeScript</span><span
+							class="tag">State Mgmt</span></div>
+					<div class="k-row"><a class="btn" href="https://github.com/KarinaTulegenova/next-pizza"
+							target="_blank" rel="noopener">GitHub</a></div>
+				</article>
+
+				<!-- BANK APP -->
+				<article class="span-6 project card">
+					<div class="thumb">
+						<img src="pr/photo_2025-10-23_00-22-28.jpg" alt="Bank App UI preview">
+					</div>
+					<h3>Bank — Accounts & Transfers</h3>
+					<p class="muted">Interactive banking interface: open accounts, transfer funds, invest, and pay for
+						services. Clean
+						components and form validation.</p>
+					<div class="k-row"><span class="tag">React</span><span class="tag">Form Handling</span><span
+							class="tag">UI
+							Components</span></div>
+					<div class="k-row"><a class="btn" href="https://github.com/KarinaTulegenova/SDP_Assignment-5"
+							target="_blank" rel="noopener">GitHub</a></div>
+				</article>
+				<article class="span-6 project card">
+					<div class="thumb">
+						<img src="pr/photo_2025-10-23_00-46-21.jpg" alt="Bank App UI preview">
+					</div>
+					<h3>Top App</h3>
+					<p class="muted">App</p>
+					<div class="k-row"><span class="tag">React</span><span class="tag">Form Handling</span><span
+							class="tag">UI
+							Components</span></div>
+					<div class="k-row"><a class="btn" href="https://github.com/KarinaTulegenova/top-app" target="_blank"
+							rel="noopener">GitHub</a></div>
+				</article>
+
+			</div>
+		</section>
+
+		<section id="certificates">
+			<h2>Certificates</h2>
+			<div class="title-bar"></div>
+
+			<div class="card p-0">
+				<div id="certsCarousel" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#certsCarousel" data-bs-slide-to="0" class="active"
+							aria-current="true" aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#certsCarousel" data-bs-slide-to="1"
+							aria-label="Slide 2"></button>
+						<button type="button" data-bs-target="#certsCarousel" data-bs-slide-to="2"
+							aria-label="Slide 3"></button>
+					</div>
+
+					<div class="carousel-inner">
+						<div class="carousel-item active" data-bs-interval="4000">
+							<img src="assets/1.jpg" class="d-block w-100" alt="Certificate 1 preview">
+							<div class="carousel-caption d-none d-md-block"><strong>Java Fundamentals</strong> — Stepik
+								Academy</div>
+						</div>
+						<div class="carousel-item" data-bs-interval="4000">
+							<img src="assets/2.jpg" class="d-block w-100" alt="Certificate 2 preview">
+							<div class="carousel-caption d-none d-md-block"><strong>JS</strong> — Stepik
+							</div>
+						</div>
+						<div class="carousel-item" data-bs-interval="4000">
+							<img src="assets/3.jpg" class="d-block w-100" alt="Certificate 3 preview">
+							<div class="carousel-caption d-none d-md-block"><strong>PostgreSQL Basics</strong> — Stepik
+							</div>
+						</div>
+					</div>
+
+					<button class="carousel-control-prev" type="button" data-bs-target="#certsCarousel"
+						data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#certsCarousel"
+						data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact">
+			<h2>Contact</h2>
+			<div class="title-bar"></div>
+			<div class="card" style="display:flex; flex-direction:column; gap:18px">
+				<p class="muted" style="margin:0">Open to internships and collaborations. Let’s talk!</p>
+				<div class="contact">
+					<a class="btn" href="mailto:241438@astanait.edu.kz" aria-label="Email">
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+							<path
+								d="M3.5 6.75A2.25 2.25 0 015.75 4.5h12.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25H5.75A2.25 2.25 0 013.5 17.25V6.75z"
+								stroke="currentColor" stroke-width="1.5" />
+							<path d="M4 7l7.3 5.1a2 2 0 002.4 0L21 7" stroke="currentColor" stroke-width="1.5" />
+						</svg>
+						<span style="margin-left:8px">241438@astanait.edu.kz</span>
+					</a>
+					<a class="btn primary" href="https://t.me/karinatul" target="_blank" rel="noopener"
+						aria-label="Telegram">
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+							<path
+								d="M21.5 4.5L2.8 11.9c-.7.29-.69 1.29.03 1.55l4.6 1.68 2 4.84c.32.77 1.39.85 1.83.13l2.87-4.6 4.7 3.45c.79.58 1.91.15 2.13-.81l2.72-12.03c.21-.95-.7-1.77-1.68-1.41z"
+								stroke="currentColor" stroke-width="1.2" />
+						</svg>
+						<span style="margin-left:8px">@karinatul</span>
+					</a>
+				</div>
+				<form id="contact-form" class="contact-form" autocomplete="on">
+					<div class="field"><input type="text" name="name" placeholder="Your name" required></div>
+					<div class="field"><input type="email" name="email" placeholder="Email" required></div>
+					<div class="field"><textarea name="message" rows="5" placeholder="Your message" required></textarea>
+					</div>
+					<div class="k-row">
+						<button class="btn primary" type="submit">Send</button>
+						<button class="btn" type="reset">Clear</button>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer wrap">
+		© <span id="y"></span> Karina Tulegenova SE-2419
+	</footer>
+
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+		const links = Array.from(document.querySelectorAll('nav a'))
+		const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean)
+		const onScroll = () => {
+			const pos = window.scrollY + 120
+			let active = links[0]
+			sections.forEach((sec, i) => { if (sec.offsetTop <= pos) active = links[i] })
+			links.forEach(l => l.classList.remove('active'))
+			active.classList.add('active')
+		}
+		document.addEventListener('scroll', onScroll)
+		onScroll()
+
+		document.getElementById('y').textContent = new Date().getFullYear()
+
+		const form = document.getElementById('contact-form');
+		if (form) {
+			form.addEventListener('submit', (e) => {
+				e.preventDefault();
+				const fd = new FormData(form);
+				const name = (fd.get('name') || '').toString();
+				const email = (fd.get('email') || '').toString();
+				const message = (fd.get('message') || '').toString();
+				const subject = `Portfolio message from ${name}`;
+				const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+				const mailto = `mailto:241438@astanait.edu.kz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+				window.location.href = mailto;
+				form.reset();
+			});
+		}
+	</script>
+</body>
+
+</html>
